@@ -14,21 +14,20 @@ public class Board extends JFrame {
 
             background = ImageIO.read(Board.class.getResource(backgroundSrc));
 
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setSize(1080, 720);
+            this.setResizable(false);
+            this.setLocationRelativeTo(null);
 
-            JFrame frame = new JFrame();
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(1080, 720);
-            frame.setResizable(false);
-            frame.setLocationRelativeTo(null);
-
-            frame.setContentPane(new JPanel() {
+            this.setContentPane(new JPanel() {
                 @Override
                 public void paintComponent(Graphics g) {
                     super.paintComponent(g);
                     g.drawImage(background, 0, 0, null);
                 }
             });
-            frame.setVisible(true);
+
+            this.setVisible(true);
             Start();
         }
 
