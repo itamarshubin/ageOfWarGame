@@ -58,12 +58,9 @@ public class Client implements Runnable{
     public void run() {
         while (true) {
             try {
-                /*
-                 * String text = din.readUTF().split(": ")[1]; for (int i = 0; i <
-                 * 20-text.length(); i++) { text="  "+text; } System.out.println(text);
-                 */
                 System.out.flush();
                 String data=din.readUTF();
+                //System.out.println(data);
                 System.out.println(data);
 //                if (data.equals("GR")) {
 //                    boardData.getRightsoldiers().get(0).setPosition(boardData.getRightsoldiers().get(0).getPosition()+5);
@@ -72,12 +69,7 @@ public class Client implements Runnable{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-
-
     }
-
-
-
 }
+
