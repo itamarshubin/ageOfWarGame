@@ -8,17 +8,16 @@ public class Client implements Runnable{
     Socket socketConnection;
     DataOutputStream outToServer;
     DataInputStream din;
+    ClientData DATA;
+
 //    Board board;
 //    Data boardData;
-    int rightSoldiersCount;
-    JLabel resalt;
 
     Client() throws UnknownHostException, IOException{
-
+        //set the serverClient
         socketConnection = new Socket("192.168.1.29", 8000);
         outToServer = new DataOutputStream(socketConnection.getOutputStream());
         din = new DataInputStream(socketConnection.getInputStream());
-
         Thread thread;
         thread = new Thread(this);
         thread.start();
@@ -27,6 +26,8 @@ public class Client implements Runnable{
         String ClientName = null;
         Scanner input = new Scanner(System.in);
         String SQL = "";
+
+        DATA = new ClientData();
 
         try {
             System.out.print("Enter you name: ");
