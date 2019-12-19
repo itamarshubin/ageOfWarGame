@@ -10,15 +10,17 @@ public class ClientData implements Serializable {
     private int enemyLife;
     private int myMoney;
     private int enemyMoney;
+    final int BASE_LIFE = 1000;
+    final int STARTING_MONEY = 500;
 
 
     public ClientData(){
         this.mySoldiers = new ArrayList<Soldier>();
         this.enemySoldiers = new ArrayList<Soldier>();
-        this.myLife=1000;
-        this.enemyLife=1000;
-        this.myMoney= 500;
-        this.enemyMoney=500;
+        this.myLife=BASE_LIFE;
+        this.enemyLife=BASE_LIFE;
+        this.myMoney= STARTING_MONEY;
+        this.enemyMoney=STARTING_MONEY;
 
     }
 

@@ -29,6 +29,14 @@ public class Board extends JFrame {
                 }
             });
             frame.setVisible(true);
+            Start();
         }
+
+    private void Start() {
+        String name = "no clue yet";
+        JLabel welcomeMessage = new JLabel();
+        welcomeMessage.setText("WELCOME TO " + name + "!");
     }
+
+}
 
