@@ -13,7 +13,7 @@ public class Client implements Runnable {
     DataOutputStream outToServer;
     DataInputStream din;
     Board board;
-    //DataClient d;
+    //ClientData d;
     Client() throws UnknownHostException, IOException {
         //d= new DataClient();
         //board = new Board();
