@@ -6,18 +6,19 @@ import java.util.Scanner;
 
 public class Client implements Runnable{
     Socket socketConnection;
-    ObjectOutputStream outToServer;
-    ObjectInputStream din;
-    ClientData DATA;
-
-//    Board board;
+    DataOutputStream outToServer;
+    DataInputStream din;
+    //    Board board;
 //    Data boardData;
+    int rightSoldiersCount;
+    JLabel resalt;
 
     Client() throws UnknownHostException, IOException{
-        //set the serverClient
+
         socketConnection = new Socket("192.168.1.29", 8000);
-        outToServer = new ObjectOutputStream(socketConnection.getOutputStream());
-        din = new ObjectInputStream(socketConnection.getInputStream());
+        outToServer = new DataOutputStream(socketConnection.getOutputStream());
+        din = new DataInputStream(socketConnection.getInputStream());
+
         Thread thread;
         thread = new Thread(this);
         thread.start();
@@ -27,17 +28,23 @@ public class Client implements Runnable{
         Scanner input = new Scanner(System.in);
         String SQL = "";
 
-        DATA = new ClientData();
-
         try {
             System.out.print("Enter you name: ");
             ClientName = input.next();
+            // ClientName += ": ";
+            // QUERY PASSING
 
             br = new BufferedReader(new InputStreamReader(System.in));
             while (!SQL.equalsIgnoreCase("exit")) {
+                // System.out.println();
+                // System.out.print(ClientName);
+
                 SQL = br.readLine();
+                // SQL = input.next();
                 outToServer.writeUTF(SQL);
                 outToServer.flush();
+                // System.out.println(din.readUTF());
+
             }
 
         } catch (Exception e) {
@@ -51,13 +58,26 @@ public class Client implements Runnable{
     public void run() {
         while (true) {
             try {
+                /*
+                 * String text = din.readUTF().split(": ")[1]; for (int i = 0; i <
+                 * 20-text.length(); i++) { text="  "+text; } System.out.println(text);
+                 */
                 System.out.flush();
-//                String data=din.readUTF();
-                System.out.println(din.readObject());
-            } catch (IOException | ClassNotFoundException e) {
+                String data=din.readUTF();
+                System.out.println(data);
+//                if (data.equals("GR")) {
+//                    boardData.getRightsoldiers().get(0).setPosition(boardData.getRightsoldiers().get(0).getPosition()+5);
+//                    updateBoard(boardData);
+//                }
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
         }
+
+
     }
+
+
+
 }
