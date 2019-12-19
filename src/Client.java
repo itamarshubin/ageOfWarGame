@@ -60,6 +60,7 @@ public class Client implements Runnable {
         }
     }
 
+
     public static void main(String[] arg) throws UnknownHostException, IOException {
         Client client = new Client();
     }

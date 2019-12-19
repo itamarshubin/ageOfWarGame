@@ -43,7 +43,7 @@ public class Board extends JFrame {
         mySoldier2.setPreferredSize(new Dimension(80, 80));
         mySoldier2.setBounds(500,50,80,80);
         mySoldier2.getPreferredSize();
-        //mySoldier1.setIcon(new ImageIcon("src/Soldier L1 Standing.png"));
+        mySoldier1.setIcon(new ImageIcon("src/Archer Standing.png"));
         mySoldier2.setBorder(new LineBorder(Color.RED,5));
 
         //soldier 3 button

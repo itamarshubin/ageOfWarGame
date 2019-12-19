@@ -39,6 +39,10 @@ public class Soldier extends JLabel {
             this.type = "archer";
             this.life = 50;
             this.damage = 10;
+            this.attackingImg = pics.getArcherAttacking();
+            this.standingImg = pics.getArcherStanding();
+            this.walkingImg = pics.getArcherWalking();
+
         }
         else {
             this.type = "defender";

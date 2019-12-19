@@ -10,6 +10,10 @@ public class allImages {
     private BufferedImage soldierL1Attack;
     private BufferedImage soldierL1Walking;
     private BufferedImage soldierL1Standing;
+    private BufferedImage archerStanding;
+    private BufferedImage archerWalking;
+    private BufferedImage archerAttacking;
+
 
     public allImages() throws IOException {
 
@@ -25,11 +29,26 @@ public class allImages {
         soldierL1Attack = ImageIO.read(Board.class.getResource("Soldier L1 Attacking.png"));
         soldierL1Standing = ImageIO.read(Board.class.getResource("Soldier L1 Standing.png"));
         soldierL1Walking = ImageIO.read(Board.class.getResource("Soldier L1 Walking.png"));
+        archerStanding = ImageIO.read(Board.class.getResource("Archer Standing.png"));
+        archerWalking = ImageIO.read(Board.class.getResource("Archer Walking.png"));
+        archerAttacking = ImageIO.read(Board.class.getResource("Archer attacking .png"));
 
     }
 
     public BufferedImage getRBAttack() {
         return RBAttack;
+    }
+
+    public BufferedImage getArcherWalking() {
+        return archerWalking;
+    }
+
+    public BufferedImage getArcherAttacking() {
+        return archerAttacking;
+    }
+
+    public BufferedImage getArcherStanding() {
+        return archerStanding;
     }
 
     public BufferedImage getRBWalking() {
