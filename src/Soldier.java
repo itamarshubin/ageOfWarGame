@@ -16,7 +16,7 @@ public class Soldier extends JLabel {
     BufferedImage currentImage;
     boolean attackState = true;
     boolean walkingState = true;
-
+//
 
     public BufferedImage getCurrentImage() {
         return currentImage;
