@@ -33,7 +33,7 @@ public class Board extends JFrame {
         //soldier 1 button
         JButton mySoldier1 = new JButton("text");
         mySoldier1.setPreferredSize(new Dimension(80, 80));
-        mySoldier1.setBounds(30,150,80,80);
+        mySoldier1.setBounds(400,50,80,80);
         mySoldier1.getPreferredSize();
         mySoldier1.setIcon(new ImageIcon("src/Soldier L1 Standing.png"));
         mySoldier1.setBorder(new LineBorder(Color.RED,5));
@@ -41,7 +41,7 @@ public class Board extends JFrame {
         //soldier 2 button
         JButton mySoldier2 = new JButton("text");
         mySoldier2.setPreferredSize(new Dimension(80, 80));
-        mySoldier2.setBounds(30,250,80,80);
+        mySoldier2.setBounds(500,50,80,80);
         mySoldier2.getPreferredSize();
         //mySoldier1.setIcon(new ImageIcon("src/Soldier L1 Standing.png"));
         mySoldier2.setBorder(new LineBorder(Color.RED,5));
@@ -49,7 +49,7 @@ public class Board extends JFrame {
         //soldier 3 button
         JButton mySoldier3 = new JButton();
         mySoldier3.setPreferredSize(new Dimension(80, 80));
-        mySoldier3.setBounds(30,350,80,80);
+        mySoldier3.setBounds(600,50,80,80);
         mySoldier3.setIcon(new ImageIcon("src/RB Standing.png"));
         mySoldier3.setBorder(new LineBorder(Color.RED,5));
 
