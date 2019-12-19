@@ -29,28 +29,10 @@ public class Server
         ClientSockets = new Vector<Socket>();
 
 
-        //while (true)
-
-        Socket client = server.accept();
-        AcceptClient acceptClient = new AcceptClient(client);
-        System.out.println("Client connected");
-        Socket pSocket = (Socket) ClientSockets.elementAt(0);
-        DataOutputStream pOut = new DataOutputStream(pSocket.getOutputStream());
-        //if (ClientSocket.equals(pSocket))
-
-        try {
-            while (true) {
-
-                //for (int i = 0; i < ClientSockets.size(); i++) {
-                //	continue;
-                //System.out.println("here");
-                pOut.writeUTF("GR");
-                pOut.flush();
-                TimeUnit.MILLISECONDS.sleep(500);
-                //}
-            }
-        } catch (IOException | InterruptedException e) {
-            //e.printStackTrace();
+        for (int i = 0; i < 2; i++) {
+            Socket client = server.accept();
+            AcceptClient acceptClient = new AcceptClient(client);
+            System.out.println("Client connected");
         }
     }
 
@@ -66,7 +48,7 @@ public class Server
 
             ClientSockets.add(ClientSocket);
 
-            //start();
+            start();
 
         }
 
@@ -81,7 +63,7 @@ public class Server
                         //if (ClientSocket.equals(pSocket))
                         //	continue;
                         DataOutputStream pOut = new DataOutputStream(pSocket.getOutputStream());
-                        pOut.writeUTF("GR");
+                        pOut.writeUTF(msgFromClient);
                         pOut.flush();
                     }
                 }
