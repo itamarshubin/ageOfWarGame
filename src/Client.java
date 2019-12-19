@@ -4,7 +4,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class Client{
+public class Client implements Runnable{
     Socket socketConnection;
     DataOutputStream outToServer;
     DataInputStream din;
