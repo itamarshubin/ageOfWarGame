@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-
 public class Board extends JFrame {
     public Board() throws IOException {
 
@@ -16,20 +15,20 @@ public class Board extends JFrame {
 
             background = ImageIO.read(Board.class.getResource(backgroundSrc));
 
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.setSize(1080, 720);
+            this.setResizable(false);
+            this.setLocationRelativeTo(null);
 
-            JFrame frame = new JFrame();
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(1080, 720);
-            frame.setResizable(false);
-            frame.setLocationRelativeTo(null);
-            frame.setContentPane(new JPanel() {
+
+            this.setContentPane(new JPanel() {
                     @Override
                     public void paintComponent(Graphics g) {
                         super.paintComponent(g);
                         g.drawImage(background, 0, 0, null);
                     }
                 });
-            frame.setLayout(null);
+            this.setLayout(null);
 
         //soldier 1 button
         JButton mySoldier1 = new JButton("text");
@@ -68,11 +67,11 @@ public class Board extends JFrame {
 
 
 
-        frame.add(mySoldier1);
-        frame.add(mySoldier2);
-        frame.add(mySoldier3);
-        frame.add(cash);
-        frame.setVisible(true);
+        this.add(mySoldier1);
+        this.add(mySoldier2);
+        this.add(mySoldier3);
+        this.add(cash);
+        this.setVisible(true);
         Start();
         }
 

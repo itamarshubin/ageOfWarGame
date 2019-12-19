@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,8 +17,14 @@ public class Client implements Runnable {
     //DataClient d;
     Client() throws UnknownHostException, IOException {
         //d= new DataClient();
+
+        JButton test = new JButton("click on me");
+
         board = new Board();
-        socketConnection = new Socket("192.168.1.39", 8000);
+
+
+
+        socketConnection = new Socket("192.168.1.37", 8000);
         outToServer = new DataOutputStream(socketConnection.getOutputStream());
         din = new DataInputStream(socketConnection.getInputStream());
 
