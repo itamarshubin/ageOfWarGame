@@ -18,9 +18,14 @@ public class Server {
         client1 = new Socket();
         client2 = new Socket();
 
-        Socket client = server.accept();
-        AcceptClient acceptClient = new AcceptClient(client);
-        System.out.println("Client connected");
+        client1 = server.accept();
+        AcceptClient acceptClient = new AcceptClient(client1);
+        System.out.println("Client1 connected");
+
+        client2 = server.accept();
+        AcceptClient acceptClient1 = new AcceptClient(client2);
+        System.out.println("Client2 connected");
+
 
 
     }

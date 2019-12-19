@@ -15,7 +15,7 @@ public class Client implements Runnable{
 
     Client() throws UnknownHostException, IOException{
 
-        socketConnection = new Socket("192.168.1.37", 8000);
+        socketConnection = new Socket("192.168.1.29", 8000);
         outToServer = new DataOutputStream(socketConnection.getOutputStream());
         din = new DataInputStream(socketConnection.getInputStream());
 
@@ -64,7 +64,7 @@ public class Client implements Runnable{
                  */
                 System.out.flush();
                 String data=din.readUTF();
-                //System.out.println(data);
+                System.out.println(data);
 //                if (data.equals("GR")) {
 //                    boardData.getRightsoldiers().get(0).setPosition(boardData.getRightsoldiers().get(0).getPosition()+5);
 //                    updateBoard(boardData);
