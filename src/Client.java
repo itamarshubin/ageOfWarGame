@@ -16,8 +16,8 @@ public class Client implements Runnable {
     //DataClient d;
     Client() throws UnknownHostException, IOException {
         //d= new DataClient();
-        //board = new Board();
-        socketConnection = new Socket("192.168.1.29", 8000);
+        board = new Board();
+        socketConnection = new Socket("192.168.1.39", 8000);
         outToServer = new DataOutputStream(socketConnection.getOutputStream());
         din = new DataInputStream(socketConnection.getInputStream());
 

@@ -58,6 +58,7 @@ public class Soldier extends JLabel {
                 attackState = false;
             }
             else currentState = getStandingImg();
+            attackState = true;
         }
          else if(isWalking){
             if(walkingState){
@@ -66,6 +67,7 @@ public class Soldier extends JLabel {
             }
             else
                 currentState = getStandingImg();
+                isWalking = true;
         }
 
          else
