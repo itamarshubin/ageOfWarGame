@@ -70,6 +70,15 @@ public class ClientData implements Serializable {
         this.enemyMoney = enemyMoney;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "ClientData{" +
+                "mySoldiers=" + mySoldiers +
+                ", enemySoldiers=" + enemySoldiers +
+                ", myLife=" + myLife +
+                ", enemyLife=" + enemyLife +
+                ", myMoney=" + myMoney +
+                ", enemyMoney=" + enemyMoney +
+                '}';
+    }
 }

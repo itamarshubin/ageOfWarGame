@@ -1,77 +1,35 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-//import newClient.Server;
-
-import java.text.*;
-import java.util.Date;
-import java.util.Scanner;
-import java.util.Vector;
-
+import java.util.ArrayList;
+import java.util.List;
 public class Server
 {
-    static Vector<Socket> ClientSockets;
+    static List<C> ClientTheads;
     int fps = 10;
     String data = "";
 
     Server() throws IOException
     {
         System.out.println("Server started");
-
+        ObjectInputStream inputStream;
+        ObjectOutputStream outputStream;
         ServerSocket server = new ServerSocket(8000);
-        ClientSockets = new Vector<Socket>();
+        ClientTheads = new ArrayList<>();
 
 
         for (int i = 0; i < 2; i++) {
             Socket client = server.accept();
-            AcceptClient acceptClient = new AcceptClient(client);
+            inputStream = new ObjectInputStream(client.getInputStream());
+            outputStream = new ObjectOutputStream(client.getOutputStream());
             System.out.println("Client connected");
+            ClientTheads.add(new C(outputStream, inputStream));
         }
+        new Thread(new Myth(ClientTheads.get(0).outputStream, ClientTheads.get(1).inputStream)).start();
+        new Thread(new Myth(ClientTheads.get(1).outputStream, ClientTheads.get(0).inputStream)).start();
     }
 
-    class AcceptClient extends Thread {
-        Socket ClientSocket;
-        DataInputStream din;
-        DataOutputStream dout;
 
-        AcceptClient(Socket client) throws IOException {
-            ClientSocket = client;
-            din = new DataInputStream(ClientSocket.getInputStream());
-            dout = new DataOutputStream(ClientSocket.getOutputStream());
-
-            ClientSockets.add(ClientSocket);
-
-            start();
-
-        }
-
-        public void run() {
-            try {
-                while (true) {
-
-                    String msgFromClient = din.readUTF();
-                    System.out.println(msgFromClient);
-                    for (int i = 0; i < ClientSockets.size(); i++) {
-                        Socket pSocket = (Socket) ClientSockets.elementAt(i);
-                        //if (ClientSocket.equals(pSocket))
-                        //	continue;
-                        DataOutputStream pOut = new DataOutputStream(pSocket.getOutputStream());
-                        pOut.writeUTF(msgFromClient);
-                        pOut.flush();
-                    }
-                }
-            } catch (IOException e) {
-                //e.printStackTrace();
-            }
-        }
-    }
 
     public static void main(String[] args) throws IOException
     {
