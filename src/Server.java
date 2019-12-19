@@ -3,30 +3,55 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.*;
-public class Server {
+import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-    static Socket client1;
-    static Socket client2;
+//import newClient.Server;
 
+import java.text.*;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.Vector;
+
+public class Server
+{
+    static Vector<Socket> ClientSockets;
+    int fps = 10;
+    String data = "";
 
     Server() throws IOException
     {
-
         System.out.println("Server started");
+
         ServerSocket server = new ServerSocket(8000);
-        client1 = new Socket();
-        client2 = new Socket();
-
-        Socket client1 = server.accept();
-        AcceptClient acceptClient1 = new AcceptClient(client1);
-        System.out.println("Client1 connected");
-
-        Socket client2 = server.accept();
-        AcceptClient acceptClient2 = new AcceptClient(client2);
-        System.out.println("Client2 connected");
+        ClientSockets = new Vector<Socket>();
 
 
+        //while (true)
+
+        Socket client = server.accept();
+        AcceptClient acceptClient = new AcceptClient(client);
+        System.out.println("Client connected");
+        Socket pSocket = (Socket) ClientSockets.elementAt(0);
+        DataOutputStream pOut = new DataOutputStream(pSocket.getOutputStream());
+        //if (ClientSocket.equals(pSocket))
+
+        try {
+            while (true) {
+
+                //for (int i = 0; i < ClientSockets.size(); i++) {
+                //	continue;
+                //System.out.println("here");
+                pOut.writeUTF("GR");
+                pOut.flush();
+                TimeUnit.MILLISECONDS.sleep(500);
+                //}
+            }
+        } catch (IOException | InterruptedException e) {
+            //e.printStackTrace();
+        }
     }
 
     class AcceptClient extends Thread {
@@ -39,38 +64,33 @@ public class Server {
             din = new DataInputStream(ClientSocket.getInputStream());
             dout = new DataOutputStream(ClientSocket.getOutputStream());
 
-            if (client1==null)
-                client1 = ClientSocket;
-            else
-                client2 = ClientSocket;
+            ClientSockets.add(ClientSocket);
 
-            start();
+            //start();
 
         }
 
-        public void run()
-        {
+        public void run() {
             try {
                 while (true) {
 
                     String msgFromClient = din.readUTF();
                     System.out.println(msgFromClient);
-                    //for (int i = 0; i < ClientSockets.size(); i++) {
-                    //Socket pSocket = (Socket) ClientSockets.elementAt(i);
-                    //if (ClientSocket.equals(pSocket))
-                    //	continue;
-                    DataOutputStream pOut1 = new DataOutputStream(client1.getOutputStream());
-                    pOut1.writeUTF(msgFromClient);
-                    pOut1.flush();
-                    DataOutputStream pOut2 = new DataOutputStream(client2.getOutputStream());
-                    pOut2.writeUTF(msgFromClient);
-                    pOut2.flush();
-
+                    for (int i = 0; i < ClientSockets.size(); i++) {
+                        Socket pSocket = (Socket) ClientSockets.elementAt(i);
+                        //if (ClientSocket.equals(pSocket))
+                        //	continue;
+                        DataOutputStream pOut = new DataOutputStream(pSocket.getOutputStream());
+                        pOut.writeUTF("GR");
+                        pOut.flush();
+                    }
                 }
+            } catch (IOException e) {
+                //e.printStackTrace();
             }
-            catch (IOException e) {e.printStackTrace();}
         }
     }
+
     public static void main(String[] args) throws IOException
     {
         Server server = new Server();
