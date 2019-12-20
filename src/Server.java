@@ -18,8 +18,9 @@ import java.util.Vector;
 public class Server
 {
     static Vector<Socket> ClientSockets;
-    int fps = 10;
+    boolean isDerechChaim=true;
     String data = "";
+
 
     Server() throws IOException
     {
@@ -33,6 +34,7 @@ public class Server
             Socket client = server.accept();
             AcceptClient acceptClient = new AcceptClient(client);
             System.out.println("Client connected");
+
         }
     }
 
@@ -46,6 +48,13 @@ public class Server
             din = new DataInputStream(ClientSocket.getInputStream());
             dout = new DataOutputStream(ClientSocket.getOutputStream());
 
+            if(isDerechChaim) {
+                dout.writeUTF("first");
+                isDerechChaim=false;
+            }else {
+                dout.writeUTF("last");
+
+            }
             ClientSockets.add(ClientSocket);
 
             start();

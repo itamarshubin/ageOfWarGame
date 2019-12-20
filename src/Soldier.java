@@ -59,6 +59,14 @@ public class Soldier extends JLabel {
         }
     }
 
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
     public void setCurrentImage(BufferedImage currentImage) {
         this.currentImage = currentImage;
     }

@@ -18,6 +18,8 @@ public class Client implements Runnable {
     DataInputStream din;
     Board board;
     ClientData DATA;
+    boolean isDerechChaim;
+
     Client() throws UnknownHostException, IOException {
         board = new Board();
         DATA=new ClientData();
@@ -67,9 +69,18 @@ public class Client implements Runnable {
             }
         });
 
-        //socketConnection = new Socket("192.168.1.37", 8000);
-        //outToServer = new DataOutputStream(socketConnection.getOutputStream());
-        //din = new DataInputStream(socketConnection.getInputStream());
+        socketConnection = new Socket("192.168.1.37", 8000);
+        outToServer = new DataOutputStream(socketConnection.getOutputStream());
+        din = new DataInputStream(socketConnection.getInputStream());
+
+
+
+       if(din.readUTF().equals("first"))
+            isDerechChaim=true;
+        else
+            isDerechChaim=false;
+
+        System.out.println("is derch"+isDerechChaim);
 
         Thread thread;
         thread = new Thread(this);
@@ -144,6 +155,7 @@ public class Client implements Runnable {
                             Y=520;
                         else
                             Y=550;
+
                         DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+3,Y);
                         if ((board.soldiers.get(i).getX() % 2) == 0)
                             board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getWalkingImg()));
