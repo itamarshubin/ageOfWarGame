@@ -44,16 +44,19 @@ public class allImages {
         CHRBAttack = ImageIO.read(Board.class.getResource("L3Attacking.png"));
         CHRBStanding = ImageIO.read(Board.class.getResource("L3Standing.png"));
         CHRBWalking = ImageIO.read(Board.class.getResource("L3Walkng.png"));
-        CHsoldierL1Attack = ImageIO.read(Board.class.getResource("goblinAttacking.png"));
-        CHsoldierL1Standing = ImageIO.read(Board.class.getResource("goblinStanding.png"));
-        CHsoldierL1Walking = ImageIO.read(Board.class.getResource("goblinWalking.png"));
-        CHarcherStanding = ImageIO.read(Board.class.getResource("archerStanding.png"));
-        CHarcherWalking = ImageIO.read(Board.class.getResource("archerRunning.png"));
-        CHarcherAttacking = ImageIO.read(Board.class.getResource("archerAttacking.png"));
+        CHsoldierL1Attack = ImageIO.read(Board.class.getResource("CHL1Attacking.png"));
+        CHsoldierL1Standing = ImageIO.read(Board.class.getResource("CHL1Standing.png"));
+        CHsoldierL1Walking = ImageIO.read(Board.class.getResource("CHL1Walking.png"));
+        CHarcherStanding = ImageIO.read(Board.class.getResource("CHArcherStanding.png"));
+        CHarcherWalking = ImageIO.read(Board.class.getResource("CHArcherWalking.png"));
+        CHarcherAttacking = ImageIO.read(Board.class.getResource("CHArcherAttacking.png"));
 
     }
 
     public BufferedImage getCHRBAttack() {
+
+
+
         return CHRBAttack;
     }
 
