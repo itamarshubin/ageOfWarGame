@@ -4,8 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class ClientData implements Serializable {
-    private List<Soldier> mySoldiers;
-    private List<Soldier> enemySoldiers;
+    private List<Soldier> Soldiers;
     private int myLife;
     private int enemyLife;
     private int myMoney;
@@ -15,8 +14,7 @@ public class ClientData implements Serializable {
 
 
     public ClientData(){
-        this.mySoldiers = new ArrayList<Soldier>();
-        this.enemySoldiers = new ArrayList<Soldier>();
+        this.Soldiers = new ArrayList<Soldier>();
         this.myLife=BASE_LIFE;
         this.enemyLife=BASE_LIFE;
         this.myMoney= STARTING_MONEY;
@@ -24,21 +22,16 @@ public class ClientData implements Serializable {
 
     }
 
-    public List<Soldier> getMySoldiers() {
-        return mySoldiers;
+
+
+    public List<Soldier> getSoldiers() {
+        return Soldiers;
     }
 
-    public void setMySoldiers(List<Soldier> mySoldiers) {
-        this.mySoldiers = mySoldiers;
+    public void setSoldiers(List<Soldier> mySoldiers) {
+        this.Soldiers = mySoldiers;
     }
 
-    public List<Soldier> getEnemySoldiers() {
-        return enemySoldiers;
-    }
-
-    public void setEnemySoldiers(List<Soldier> enemySoldiers) {
-        this.enemySoldiers = enemySoldiers;
-    }
 
     public int getMyLife() {
         return myLife;
@@ -74,8 +67,7 @@ public class ClientData implements Serializable {
 
     @Override
     public String toString() {
-        return  mySoldiers +
-                "|" + enemySoldiers +
+        return  Soldiers +
                 "|" + myLife +
                 "|" + enemyLife +
                 "|" + myMoney +

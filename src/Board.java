@@ -2,11 +2,24 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Board extends JFrame {
+
+    public JButton mySoldier1;
+    public JButton mySoldier2;
+    public JButton mySoldier3;
+    public List<Soldier> soldiers;
     public Board() throws IOException {
+
+            soldiers = new ArrayList<>();
 
             BufferedImage background;
             String backgroundSrc = "Background.png";
@@ -20,7 +33,6 @@ public class Board extends JFrame {
             this.setResizable(false);
             this.setLocationRelativeTo(null);
 
-
             this.setContentPane(new JPanel() {
                     @Override
                     public void paintComponent(Graphics g) {
@@ -31,23 +43,28 @@ public class Board extends JFrame {
             this.setLayout(null);
 
         //soldier 1 button
-        JButton mySoldier1 = new JButton("text");
+        mySoldier1 = new JButton("text");
         mySoldier1.setPreferredSize(new Dimension(80, 80));
         mySoldier1.setBounds(400,50,80,80);
         mySoldier1.getPreferredSize();
         mySoldier1.setIcon(new ImageIcon("src/Soldier L1 Standing.png"));
         mySoldier1.setBorder(new LineBorder(Color.RED,5));
 
+
+
         //soldier 2 button
-        JButton mySoldier2 = new JButton("text");
+        mySoldier2 = new JButton("text");
         mySoldier2.setPreferredSize(new Dimension(80, 80));
         mySoldier2.setBounds(500,50,80,80);
         mySoldier2.getPreferredSize();
         mySoldier2.setIcon(new ImageIcon("src/Archer Standing.png"));
         mySoldier2.setBorder(new LineBorder(Color.RED,5));
 
+
+
+
         //soldier 3 button
-        JButton mySoldier3 = new JButton();
+        mySoldier3 = new JButton();
         mySoldier3.setPreferredSize(new Dimension(80, 80));
         mySoldier3.setBounds(600,50,80,80);
         mySoldier3.setIcon(new ImageIcon("src/RB Standing.png"));
@@ -79,6 +96,15 @@ public class Board extends JFrame {
         String name = "no clue yet";
         JLabel welcomeMessage = new JLabel();
         welcomeMessage.setText("WELCOME TO " + name + "!");
+    }
+
+    public void AddSoldier(String type) throws IOException {
+        Soldier newOne = new Soldier(type);
+        newOne.setBounds(150,600,40,30);
+        newOne.setText(newOne.getType());
+
+        this.add(newOne);
+        this.repaint();
     }
 
 }
