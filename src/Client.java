@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.*;
 import java.util.Timer;
@@ -19,9 +20,10 @@ public class Client implements Runnable {
     Board board;
     ClientData DATA;
     boolean isDerechChaim;
+    boolean banana = true;
 
-    Client() throws UnknownHostException, IOException, ClassNotFoundException {
-        System.out.println(convert.strToObj(convert.objToStr(new ClientData())).toString());
+    Client() throws UnknownHostException, IOException, ClassNotFoundException, URISyntaxException {
+        //System.out.println(convert.strToObj(convert.objToStr(new ClientData())).toString());
         board = new Board();
         DATA=new ClientData();
 
@@ -84,6 +86,22 @@ public class Client implements Runnable {
 
         System.out.println("is derch"+isDerechChaim);
 
+        Thread sendData = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new Timer().scheduleAtFixedRate(new TimerTask(){
+                    @Override
+                    public void run(){
+                        try {
+                            outToServer.writeUTF(convert.objToStr(DATA));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },0,1000);
+            }
+        });
+        sendData.start();
         Thread thread;
         thread = new Thread(this);
         thread.start();
@@ -117,7 +135,7 @@ public class Client implements Runnable {
     }
 
 
-    public static void main(String[] arg) throws UnknownHostException, IOException, ClassNotFoundException {
+    public static void main(String[] arg) throws UnknownHostException, IOException, ClassNotFoundException, URISyntaxException {
         Client client = new Client();
     }
 
@@ -159,8 +177,17 @@ public class Client implements Runnable {
                         else
                             board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getStandingImg()));
 
-                        board.soldiers.get(i).setLocation(board.soldiers.get(i).getX(),Y);
+                        if (((board.soldiers.get(i).getX()>900) || (board.soldiers.get(i).getType().equals("defender")&&(board.soldiers.get(i).getX()>850)))&&isDerechChaim) {
+                            board.soldiers.get(i).setSpeed(0);
+                            if (banana) {
+                                board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getAttackingImg()));
+                                banana = !banana;
+                            } else {
+                                board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getStandingImg()));
+                                banana = !banana;
+                            }
 
+                        }
 
                     }
                     board.repaint();

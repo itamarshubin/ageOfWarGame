@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -65,8 +66,8 @@ public class Server
                 while (true) {
 
                     String msgFromClient = din.readUTF();
-                    System.out.println(msgFromClient);
-                    for (int i = 0; i < ClientSockets.size(); i++) {
+                    System.out.println(convert.strToObj(msgFromClient).toString());
+                    /*for (int i = 0; i < ClientSockets.size(); i++) {
                         Socket pSocket = (Socket) ClientSockets.elementAt(i);
                         //if (ClientSocket.equals(pSocket))
                         //	continue;
@@ -76,10 +77,14 @@ public class Server
                         else
                         pOut.writeUTF(msgFromClient);
                         pOut.flush();
-                    }
+                    }*/
                 }
             } catch (IOException e) {
                 //e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }
