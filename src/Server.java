@@ -1,6 +1,4 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDateTime;
@@ -89,5 +87,22 @@ public class Server
     public static void main(String[] args) throws IOException
     {
         Server server = new Server();
+    }
+
+    public static byte[] toS(ClientData c) throws IOException {
+
+        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+        ObjectOutputStream so = new ObjectOutputStream(bo);
+        so.writeObject(c);
+        so.flush();
+        return bo.toString().getBytes();
+    }
+    // deserialize the object
+    public static ClientData toOb(String s) throws IOException, ClassNotFoundException {
+
+        byte b[] = s.getBytes();
+        ByteArrayInputStream bi = new ByteArrayInputStream(b);
+        ObjectInputStream si = new ObjectInputStream(bi);
+        return (ClientData) si.readObject();
     }
 }

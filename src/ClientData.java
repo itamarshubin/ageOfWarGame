@@ -22,8 +22,6 @@ public class ClientData implements Serializable {
 
     }
 
-
-
     public List<Soldier> getSoldiers() {
         return Soldiers;
     }
