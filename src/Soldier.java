@@ -16,8 +16,7 @@ public class Soldier extends JLabel {
     BufferedImage standingImg;
     BufferedImage walkingImg;
     BufferedImage currentImage;
-    boolean attackState = true;
-    boolean walkingState = true;
+
 //
 
     public BufferedImage getCurrentImage() {
@@ -27,7 +26,7 @@ public class Soldier extends JLabel {
     public Soldier(String type) throws IOException {
         this.setText("Im here");
         this.setBackground(Color.RED);
-        this.setBounds(150,600,100,100);
+        this.setBounds(70,550,100,100);
         allImages pics = new allImages();
         this.type=type;
         this.position=0;
@@ -38,8 +37,9 @@ public class Soldier extends JLabel {
             this.attackingImg = pics.getSoldierL1Attack();
             this.standingImg = pics.getSoldierL1Standing();
             this.walkingImg = pics.getSoldierL1Walking();
-            this.currentImage = calcImage();
-            //this.setIcon((Icon)currentImage);
+            this.isWalking = true;
+            this.currentImage = standingImg;
+            this.setIcon(new ImageIcon(currentImage));
         }
         else if (type.equals("archer")) {
             this.type = "archer";
@@ -60,31 +60,8 @@ public class Soldier extends JLabel {
         }
     }
 
-    private BufferedImage calcImage() {
-        BufferedImage currentState;
-        if(isAttack){
-            if(this.attackState) {
-                currentState = getAttackingImg();
-                attackState = false;
-            }
-            else currentState = getStandingImg();
-            attackState = true;
-        }
-         else if(isWalking){
-            if(walkingState){
-                currentState = getWalkingImg();
-                isWalking = false;
-            }
-            else
-                currentState = getStandingImg();
-                isWalking = true;
-        }
-
-         else
-             currentState = getStandingImg();
-
-
-        return currentState;
+    public void setCurrentImage(BufferedImage currentImage) {
+        this.currentImage = currentImage;
     }
 
     public String getType() {

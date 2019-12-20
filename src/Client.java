@@ -131,8 +131,15 @@ public class Client implements Runnable {
                 @Override
                 public void run(){
                     for (int i = 0; i < DATA.getSoldiers().size(); i++) {
-                        DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+5,600);
-                        board.soldiers.get(i).setLocation(board.soldiers.get(i).getX()+5,600);
+                        DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+3,550);
+                        if ((board.soldiers.get(i).getX() % 2) == 0)
+                            board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getWalkingImg()));
+
+                        else
+                            board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getStandingImg()));
+
+                        board.soldiers.get(i).setLocation(board.soldiers.get(i).getX(),550);
+
 
                     }
                     board.repaint();
