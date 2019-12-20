@@ -13,6 +13,15 @@ public class allImages {
     private BufferedImage archerStanding;
     private BufferedImage archerWalking;
     private BufferedImage archerAttacking;
+    private BufferedImage CHRBAttack;
+    private BufferedImage CHRBWalking;
+    private BufferedImage CHRBStanding;
+    private BufferedImage CHsoldierL1Attack;
+    private BufferedImage CHsoldierL1Walking;
+    private BufferedImage CHsoldierL1Standing;
+    private BufferedImage CHarcherStanding;
+    private BufferedImage CHarcherWalking;
+    private BufferedImage CHarcherAttacking;
 
 
     public allImages() throws IOException {
@@ -32,7 +41,52 @@ public class allImages {
         archerStanding = ImageIO.read(Board.class.getResource("Archer Standing.png"));
         archerWalking = ImageIO.read(Board.class.getResource("Archer Walking.png"));
         archerAttacking = ImageIO.read(Board.class.getResource("Archer attacking .png"));
+        CHRBAttack = ImageIO.read(Board.class.getResource("L3Attacking.png"));
+        CHRBStanding = ImageIO.read(Board.class.getResource("L3Standing.png"));
+        CHRBWalking = ImageIO.read(Board.class.getResource("L3Walkng.png"));
+        CHsoldierL1Attack = ImageIO.read(Board.class.getResource("goblinAttacking.png"));
+        CHsoldierL1Standing = ImageIO.read(Board.class.getResource("goblinStanding.png"));
+        CHsoldierL1Walking = ImageIO.read(Board.class.getResource("goblinWalking.png"));
+        CHarcherStanding = ImageIO.read(Board.class.getResource("archerStanding.png"));
+        CHarcherWalking = ImageIO.read(Board.class.getResource("archerRunning.png"));
+        CHarcherAttacking = ImageIO.read(Board.class.getResource("archerAttacking.png"));
 
+    }
+
+    public BufferedImage getCHRBAttack() {
+        return CHRBAttack;
+    }
+
+    public BufferedImage getCHRBWalking() {
+        return CHRBWalking;
+    }
+
+    public BufferedImage getCHRBStanding() {
+        return CHRBStanding;
+    }
+
+    public BufferedImage getCHsoldierL1Attack() {
+        return CHsoldierL1Attack;
+    }
+
+    public BufferedImage getCHsoldierL1Walking() {
+        return CHsoldierL1Walking;
+    }
+
+    public BufferedImage getCHsoldierL1Standing() {
+        return CHsoldierL1Standing;
+    }
+
+    public BufferedImage getCHarcherStanding() {
+        return CHarcherStanding;
+    }
+
+    public BufferedImage getCHarcherWalking() {
+        return CHarcherWalking;
+    }
+
+    public BufferedImage getCHarcherAttacking() {
+        return CHarcherAttacking;
     }
 
     public BufferedImage getRBAttack() {
