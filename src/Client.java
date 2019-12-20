@@ -74,17 +74,18 @@ public class Client implements Runnable {
         din = new DataInputStream(socketConnection.getInputStream());
 
 
-
+        System.out.println("here");
        if(din.readUTF().equals("first"))
             isDerechChaim=true;
         else
             isDerechChaim=false;
 
+        System.out.println("here6");
         System.out.println("is derch"+isDerechChaim);
 
         Thread thread;
         thread = new Thread(this);
-        //thread.start();
+        thread.start();
 
         BufferedReader br = null;
         String ClientName = null;

@@ -48,6 +48,7 @@ public class Server
             din = new DataInputStream(ClientSocket.getInputStream());
             dout = new DataOutputStream(ClientSocket.getOutputStream());
 
+                System.out.println("asd");
             if(isDerechChaim) {
                 dout.writeUTF("first");
                 isDerechChaim=false;
