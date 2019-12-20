@@ -24,9 +24,8 @@ public class Soldier extends JLabel {
     }
 
     public Soldier(String type) throws IOException {
-        this.setText("Im here");
         this.setBackground(Color.RED);
-        this.setBounds(70,550,100,100);
+        this.setBounds(70,550,150,150);
         allImages pics = new allImages();
         this.type=type;
         this.position=0;

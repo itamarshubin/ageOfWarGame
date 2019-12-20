@@ -42,7 +42,11 @@ public class Client implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    board.AddSoldier("archer");
+                    Soldier s = new Soldier("archer");
+                    DATA.getSoldiers().add(s);
+                    board.soldiers.add(s);
+                    board.add(board.soldiers.get(board.soldiers.size()-1));
+                    board.repaint();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -52,7 +56,11 @@ public class Client implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    board.AddSoldier("defender");
+                    Soldier s = new Soldier("defender");
+                    DATA.getSoldiers().add(s);
+                    board.soldiers.add(s);
+                    board.add(board.soldiers.get(board.soldiers.size()-1));
+                    board.repaint();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -130,15 +138,20 @@ public class Client implements Runnable {
             new Timer().scheduleAtFixedRate(new TimerTask(){
                 @Override
                 public void run(){
+                int Y=550;
                     for (int i = 0; i < DATA.getSoldiers().size(); i++) {
-                        DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+3,550);
+                        if((board.soldiers.get(i).getType()).equals("defender"))
+                            Y=520;
+                        else
+                            Y=550;
+                        DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+3,Y);
                         if ((board.soldiers.get(i).getX() % 2) == 0)
                             board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getWalkingImg()));
 
                         else
                             board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getStandingImg()));
 
-                        board.soldiers.get(i).setLocation(board.soldiers.get(i).getX(),550);
+                        board.soldiers.get(i).setLocation(board.soldiers.get(i).getX(),Y);
 
 
                     }
