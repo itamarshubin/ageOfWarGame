@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -9,6 +10,7 @@ public class Soldier extends JLabel {
     boolean isDead;
     boolean isAttack;
     boolean isWalking;
+    int speed;
     int position;
     BufferedImage attackingImg;
     BufferedImage standingImg;
@@ -23,6 +25,9 @@ public class Soldier extends JLabel {
     }
 
     public Soldier(String type) throws IOException {
+        this.setText("Im here");
+        this.setBackground(Color.RED);
+        this.setBounds(150,600,100,100);
         allImages pics = new allImages();
         this.type=type;
         this.position=0;
@@ -34,6 +39,7 @@ public class Soldier extends JLabel {
             this.standingImg = pics.getSoldierL1Standing();
             this.walkingImg = pics.getSoldierL1Walking();
             this.currentImage = calcImage();
+            //this.setIcon((Icon)currentImage);
         }
         else if (type.equals("archer")) {
             this.type = "archer";

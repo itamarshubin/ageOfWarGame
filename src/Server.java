@@ -63,6 +63,9 @@ public class Server
                         //if (ClientSocket.equals(pSocket))
                         //	continue;
                         DataOutputStream pOut = new DataOutputStream(pSocket.getOutputStream());
+                        if (msgFromClient.equals("N"))
+                            pOut.writeUTF("new soldier");
+                        else
                         pOut.writeUTF(msgFromClient);
                         pOut.flush();
                     }

@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -6,7 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
+import java.util.*;
+import java.util.Timer;
 
 public class Client implements Runnable {
 
@@ -14,23 +17,55 @@ public class Client implements Runnable {
     DataOutputStream outToServer;
     DataInputStream din;
     Board board;
-    //DataClient d;
+    ClientData DATA;
     Client() throws UnknownHostException, IOException {
-        //d= new DataClient();
-
-        JButton test = new JButton("click on me");
-
         board = new Board();
+        DATA=new ClientData();
 
+        Thread frame = new Thread(f);
+        frame.start();
+        board.mySoldier1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Soldier s = new Soldier("normal");
+                    DATA.getSoldiers().add(s);
+                    board.soldiers.add(s);
+                    board.add(board.soldiers.get(board.soldiers.size()-1));
+                    board.repaint();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        board.mySoldier2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    board.AddSoldier("archer");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        board.mySoldier3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    board.AddSoldier("defender");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
-
-        socketConnection = new Socket("192.168.1.37", 8000);
-        outToServer = new DataOutputStream(socketConnection.getOutputStream());
-        din = new DataInputStream(socketConnection.getInputStream());
+        //socketConnection = new Socket("192.168.1.37", 8000);
+        //outToServer = new DataOutputStream(socketConnection.getOutputStream());
+        //din = new DataInputStream(socketConnection.getInputStream());
 
         Thread thread;
         thread = new Thread(this);
-        thread.start();
+        //thread.start();
 
         BufferedReader br = null;
         String ClientName = null;
@@ -73,6 +108,10 @@ public class Client implements Runnable {
                  * 20-text.length(); i++) { text="  "+text; } System.out.println(text);
                  */
                 System.out.flush();
+                if (din.readUTF().equals("new soldier")) {
+                    newSoldier();
+
+                }
                 System.out.println(din.readUTF());
 
             } catch (IOException e) {
@@ -81,4 +120,30 @@ public class Client implements Runnable {
 
         }
     }
+    public void newSoldier() throws IOException {
+        board.AddSoldier("normal");
+    }
+
+    Runnable f = new Runnable() {
+        @Override
+        public void run() {
+            new Timer().scheduleAtFixedRate(new TimerTask(){
+                @Override
+                public void run(){
+                    for (int i = 0; i < DATA.getSoldiers().size(); i++) {
+                        DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+5,600);
+                        board.soldiers.get(i).setLocation(board.soldiers.get(i).getX()+5,600);
+
+                    }
+                    board.repaint();
+                    //board.soldiers = DATA.getSoldiers();
+                    //for (int i = 0; i < board.soldiers.size(); i++) {
+
+                    //System.out.println("Here");
+                    //}
+                }
+            },0,100);
+        }
+    };
+
 }
