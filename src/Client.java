@@ -30,7 +30,7 @@ public class Client implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Soldier s = new Soldier("normal");
+                    Soldier s = new Soldier("normal",isDerechChaim);
                     DATA.getSoldiers().add(s);
                     board.soldiers.add(s);
                     board.add(board.soldiers.get(board.soldiers.size()-1));
@@ -44,7 +44,7 @@ public class Client implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Soldier s = new Soldier("archer");
+                    Soldier s = new Soldier("archer",isDerechChaim);
                     DATA.getSoldiers().add(s);
                     board.soldiers.add(s);
                     board.add(board.soldiers.get(board.soldiers.size()-1));
@@ -58,7 +58,7 @@ public class Client implements Runnable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Soldier s = new Soldier("defender");
+                    Soldier s = new Soldier("defender",isDerechChaim);
                     DATA.getSoldiers().add(s);
                     board.soldiers.add(s);
                     board.add(board.soldiers.get(board.soldiers.size()-1));
@@ -128,10 +128,6 @@ public class Client implements Runnable {
                  * 20-text.length(); i++) { text="  "+text; } System.out.println(text);
                  */
                 System.out.flush();
-                if (din.readUTF().equals("new soldier")) {
-                    newSoldier();
-
-                }
                 System.out.println(din.readUTF());
 
             } catch (IOException e) {
@@ -140,9 +136,7 @@ public class Client implements Runnable {
 
         }
     }
-    public void newSoldier() throws IOException {
-        board.AddSoldier("normal");
-    }
+
 
     Runnable f = new Runnable() {
         @Override
@@ -157,7 +151,7 @@ public class Client implements Runnable {
                         else
                             Y=550;
 
-                        DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+3,Y);
+                        DATA.getSoldiers().get(i).setLocation(DATA.getSoldiers().get(i).getX()+DATA.getSoldiers().get(i).getSpeed(),Y);
                         if ((board.soldiers.get(i).getX() % 2) == 0)
                             board.soldiers.get(i).setIcon(new ImageIcon(board.soldiers.get(i).getWalkingImg()));
 

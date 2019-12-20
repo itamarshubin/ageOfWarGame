@@ -98,14 +98,7 @@ public class Board extends JFrame {
         welcomeMessage.setText("WELCOME TO " + name + "!");
     }
 
-    public void AddSoldier(String type) throws IOException {
-        Soldier newOne = new Soldier(type);
-        newOne.setBounds(150,600,40,30);
-        newOne.setText(newOne.getType());
 
-        this.add(newOne);
-        this.repaint();
-    }
 
 }
 
