@@ -20,8 +20,8 @@ public class Client implements Runnable {
     ClientData DATA;
     boolean isDerechChaim;
 
-    Client() throws UnknownHostException, IOException {
-        System.out.println(convert.objToStr(new ClientData()));
+    Client() throws UnknownHostException, IOException, ClassNotFoundException {
+        System.out.println(convert.strToObj(convert.objToStr(new ClientData())).toString());
         board = new Board();
         DATA=new ClientData();
 
@@ -117,7 +117,7 @@ public class Client implements Runnable {
     }
 
 
-    public static void main(String[] arg) throws UnknownHostException, IOException {
+    public static void main(String[] arg) throws UnknownHostException, IOException, ClassNotFoundException {
         Client client = new Client();
     }
 

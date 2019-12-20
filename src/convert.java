@@ -18,9 +18,37 @@ public class convert {
             stringBuilder.append(line);
             stringBuilder.append(ls);
         }
-
         return stringBuilder.toString();
 
+    }
+    public static ClientData strToObj(String string) throws IOException, ClassNotFoundException {
+        PrintWriter writer = new PrintWriter("text.txt", "UTF-8");
+        writer.println(string);
+        FileInputStream file = new FileInputStream("text.txt");
+        ObjectInputStream in = new ObjectInputStream(file);
+
+        in.close();
+        file.close();
+        // Method for deserialization of object
+        return  (ClientData)in.readObject();
+
+    }
+    private String readFile(String file) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader (file));
+        String         line = null;
+        StringBuilder  stringBuilder = new StringBuilder();
+        String         ls = System.getProperty("line.separator");
+
+        try {
+            while((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+
+            return stringBuilder.toString();
+        } finally {
+            reader.close();
+        }
     }
 
 }
