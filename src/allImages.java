@@ -41,9 +41,9 @@ public class allImages {
         archerStanding = ImageIO.read(Board.class.getResource("Archer Standing.png"));
         archerWalking = ImageIO.read(Board.class.getResource("Archer Walking.png"));
         archerAttacking = ImageIO.read(Board.class.getResource("Archer attacking .png"));
-        CHRBAttack = ImageIO.read(Board.class.getResource("L3Attacking.png"));
-        CHRBStanding = ImageIO.read(Board.class.getResource("L3Standing.png"));
-        CHRBWalking = ImageIO.read(Board.class.getResource("L3Walkng.png"));
+        CHRBAttack = ImageIO.read(Board.class.getResource("CHL3Attacking.png"));
+        CHRBStanding = ImageIO.read(Board.class.getResource("CHL3Standing.png"));
+        CHRBWalking = ImageIO.read(Board.class.getResource("CHL3Walking.png"));
         CHsoldierL1Attack = ImageIO.read(Board.class.getResource("CHL1Attacking.png"));
         CHsoldierL1Standing = ImageIO.read(Board.class.getResource("CHL1Standing.png"));
         CHsoldierL1Walking = ImageIO.read(Board.class.getResource("CHL1Walking.png"));
